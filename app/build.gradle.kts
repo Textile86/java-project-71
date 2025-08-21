@@ -3,6 +3,7 @@ plugins {
     id("com.github.ben-manes.versions") version "0.52.0"
     application
     checkstyle
+    id("org.sonarqube") version "6.2.0.5505"
 }
 
 application {
@@ -12,6 +13,13 @@ application {
 checkstyle {
     config = resources.text.fromFile("/home/textile86/java-project-71/app/config/checkstyle/checkstyle.xml")
     toolVersion = "11.0.0"
+}
+
+sonar {
+    properties {
+        property("sonar.projectKey", "Textile86_java-project-71")
+        property("sonar.organization", "textile86")
+    }
 }
 
 group = "hexlet.code"

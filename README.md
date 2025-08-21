@@ -1,4 +1,2 @@
-### Hexlet tests and linter status:
-[![Actions Status](https://github.com/Textile86/java-project-71/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Textile86/java-project-71/actions)
+[![Java CI](https://github.com/Textile86/java-project-71/actions/workflows/differ.yml/badge.svg)](https://github.com/Textile86/java-project-71/actions/workflows/differ.yml)
 
-First commit
