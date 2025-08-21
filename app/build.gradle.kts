@@ -19,6 +19,7 @@ sonar {
     properties {
         property("sonar.projectKey", "Textile86_java-project-71")
         property("sonar.organization", "textile86")
+        property("sonar.host.url", "https://sonarcloud.io")
     }
 }
 
