@@ -4,6 +4,7 @@ plugins {
     application
     checkstyle
     id("org.sonarqube") version "6.2.0.5505"
+    jacoco
 }
 
 application {
@@ -23,6 +24,11 @@ sonar {
     }
 }
 
+jacoco {
+    toolVersion = "0.8.13"
+    reportsDirectory = layout.buildDirectory.dir("customJacocoReportDir")
+}
+
 group = "hexlet.code"
 version = "1.0-SNAPSHOT"
 
@@ -39,4 +45,9 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+    finalizedBy(tasks.jacocoTestReport)
+}
+
+tasks.jacocoTestReport {
+    dependsOn(tasks.test)
 }

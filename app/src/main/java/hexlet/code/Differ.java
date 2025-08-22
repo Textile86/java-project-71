@@ -1,5 +1,4 @@
 package hexlet.code;
-
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Map;
@@ -24,8 +23,10 @@ public class Differ {
                 result.append("  - ").append(key).append(": ").append(data1.get(key)).append("\n");
             } else if (!data1.containsKey(key) && data2.containsKey(key)) {
                 result.append("  + ").append(key).append(": ").append(data2.get(key)).append("\n");
-            } else if (data1.get(key).equals(data2.get(key))) {
+            } else if (data1.get(key) != null && data1.get(key).equals(data2.get(key))) {
                 result.append("    ").append(key).append(": ").append(data1.get(key)).append("\n");
+            } else if (data1.get(key) == null && data2.get(key) == null) {
+                result.append("    ").append(key).append(": null\n");
             } else {
                 result.append("  - ").append(key).append(": ").append(data1.get(key)).append("\n");
                 result.append("  + ").append(key).append(": ").append(data2.get(key)).append("\n");
@@ -36,4 +37,3 @@ public class Differ {
         return result.toString();
     }
 }
-

@@ -1,0 +1,18 @@
+{
+  - boolean: true
+  + boolean: false
+  - double: 3.14
+  + double: 9.8
+  - integer: 20
+  + integer: 30
+  + newString: added
+  - nullValue: null
+  + nullValue: not null
+  - numberKey: 25
+  + numberKey: word
+    sameKey: abcde
+  - string: hello
+  + string: world
+  - stringKey: word
+  + stringKey: 50
+}

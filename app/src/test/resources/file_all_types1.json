@@ -1,0 +1,10 @@
+{
+	"integer": 20,
+	"double": 3.14,
+	"boolean": true,
+	"nullValue": null,
+	"string": "hello",
+	"numberKey": 25,
+	"sameKey": "abcde",
+	"stringKey": "word"
+}

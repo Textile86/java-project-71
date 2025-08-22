@@ -1,0 +1,11 @@
+{
+	"integer": 30,
+	"double": 9.8,
+	"boolean": false,
+	"nullValue": "not null",
+	"string": "world",
+	"sameKey": "abcde",
+	"newString": "added",
+	"numberKey": "word",
+	"stringKey": 50
+}
