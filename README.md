@@ -4,6 +4,14 @@
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Textile86_java-project-71&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Textile86_java-project-71)
 
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=Textile86_java-project-71&metric=bugs)](https://sonarcloud.io/summary/new_code?id=Textile86_java-project-71)
+
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=Textile86_java-project-71&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=Textile86_java-project-71)
+
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=Textile86_java-project-71&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=Textile86_java-project-71)
+
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Textile86_java-project-71&metric=coverage)](https://sonarcloud.io/summary/new_code?id=Textile86_java-project-71)
+
 ## Возможности
 
 - Сравнение JSON-файлов
@@ -17,48 +25,57 @@ cd java-project-71/app
 
 ## Использование
 
-# Сравнение двух JSON-файлов
-bash
+### Сравнение двух JSON-файлов
+```bash
 ./build/install/app/bin/app file1.json file2.json
+```
 
-# Сравнение двух YAML-файлов
-bash
+### Сравнение двух YAML-файлов
+```bash
 ./build/install/app/bin/app file1.yaml file2.yaml
+```
 
-# Справочная информация
-bash
+### Справочная информация
+```bash
 ./build/install/app/bin/app -f
+```
 
 ## Развертывание программы
 
-# Установка
-bash
+### Установка
+```bash
 make setup
+```
 
-# Билд
-bash
+### Билд
+```bash
 make build
+```
 
-# Запуск
-bash
+### Запуск
+```bash
 make run
+```
 
-# Тесты
-bash
+### Тесты
+```bash
 make test
+```
 
-# Линтер
-bash
+### Линтер
+```bash
 make lint
+```
 
-# Обновить
-bash
+### Обновить
+```bash
 make update
+```
 
 ### Структура проекта
+```
 ├── README.md
 └── app
-    ├── C:
     ├── Makefile
     ├── build.gradle.kts
     ├── config
@@ -92,3 +109,4 @@ make update
                 ├── file2.json
                 ├── file_all_types1.json
                 └── file_all_types2.json
+```
