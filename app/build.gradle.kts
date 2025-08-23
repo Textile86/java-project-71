@@ -8,12 +8,13 @@ plugins {
 }
 
 application {
-    mainClass = "hexlet.code.App"
+    mainClass.set("hexlet.code.App")
 }
 
 checkstyle {
-    config = resources.text.fromFile("/home/textile86/java-project-71/app/config/checkstyle/checkstyle.xml")
+    configFile = file("config/checkstyle/checkstyle.xml")
     toolVersion = "11.0.0"
+    // isIgnoreFailures = false
 }
 
 sonar {
@@ -26,7 +27,6 @@ sonar {
 
 jacoco {
     toolVersion = "0.8.13"
-    reportsDirectory = layout.buildDirectory.dir("customJacocoReportDir")
 }
 
 group = "hexlet.code"
@@ -50,4 +50,8 @@ tasks.test {
 
 tasks.jacocoTestReport {
     dependsOn(tasks.test)
+    reports {
+        xml.required = true
+        html.required = true
+    }
 }
