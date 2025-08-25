@@ -34,6 +34,6 @@ public class Parser {
         if (lastDotIndex == -1) {
             throw new IllegalArgumentException("File without extension: " + filename);
         }
-        return filename.substring( lastDotIndex + 1);
+        return filename.substring(lastDotIndex + 1);
     }
 }

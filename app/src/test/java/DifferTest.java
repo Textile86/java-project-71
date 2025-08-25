@@ -86,7 +86,7 @@ public class DifferTest {
         String filePath2 = "src/test/resources/file2.json";
         try {
             Differ.generate(filePath1, filePath2).trim();
-            assert false: "Must throw exception";
+            assert false : "Must throw exception";
         } catch (IllegalArgumentException e) {
             assertEquals("Files has different format", e.getMessage());
         }
