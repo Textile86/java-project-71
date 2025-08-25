@@ -12,18 +12,23 @@
 
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Textile86_java-project-71&metric=coverage)](https://sonarcloud.io/summary/new_code?id=Textile86_java-project-71)
 
-## Возможности
+
+## Возможности:
 
 - Сравнение JSON-файлов
 - Сравнение YAML-файлов
 
-## Установка
-bash
+## Демонстрация работы:
+[![asciicast](https://asciinema.org/a/zAPOQDNls2AqQ1YoZQyStCrfI.svg)](https://asciinema.org/a/zAPOQDNls2AqQ1YoZQyStCrfI)
+
+## Установка:
+```bash
 git clone https://github.com/your-username/java-project-71.git
 cd java-project-71/app
 ./gradlew installDist
+```
 
-## Использование
+## Использование:
 
 ### Сравнение двух JSON-файлов
 ```bash

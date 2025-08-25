@@ -14,6 +14,7 @@ public class DifferTest {
     public static String expectedEmptyResult;
     public static String expectedAllTypesResult;
     public static String expectedSameFilesResult;
+    public static String expectedYamlCompareResult;
 
     @BeforeAll
     public static void setUp() throws IOException {
@@ -25,6 +26,9 @@ public class DifferTest {
         expectedAllTypesResult = Files.readString(expectedAllTypesPath).trim();
         Path expectedSameFilesPath = Paths.get("src/test/resources/expected_same_files.txt");
         expectedSameFilesResult = Files.readString(expectedSameFilesPath).trim();
+        Path expectedYamlCompareFilesPath = Paths.get("src/test/resources/expected_yaml_files.txt");
+        expectedYamlCompareResult = Files.readString(expectedYamlCompareFilesPath).trim();
+
     }
 
     @Test
@@ -68,4 +72,23 @@ public class DifferTest {
         assertEquals(expectedAllTypesResult, result);
     }
 
+    @Test
+    public void testYamlFiles() throws IOException {
+        String filePath1 = "src/test/resources/yaml_file1.yaml";
+        String filePath2 = "src/test/resources/yaml_file2.yaml";
+        String result = Differ.generate(filePath1, filePath2).trim();
+        assertEquals(expectedAllTypesResult, result);
+    }
+
+    @Test
+    public void testDifferentFormats() throws Exception {
+        String filePath1 = "src/test/resources/yaml_file1.yaml";
+        String filePath2 = "src/test/resources/file2.json";
+        try {
+            Differ.generate(filePath1, filePath2).trim();
+            assert false: "Must throw exception";
+        } catch (IllegalArgumentException e) {
+            assertEquals("Files has different format", e.getMessage());
+        }
+    }
 }
