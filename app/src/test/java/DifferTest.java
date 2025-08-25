@@ -77,7 +77,7 @@ public class DifferTest {
         String filePath1 = "src/test/resources/yaml_file1.yaml";
         String filePath2 = "src/test/resources/yaml_file2.yaml";
         String result = Differ.generate(filePath1, filePath2).trim();
-        assertEquals(expectedAllTypesResult, result);
+        assertEquals(expectedYamlCompareResult, result);
     }
 
     @Test
@@ -92,3 +92,4 @@ public class DifferTest {
         }
     }
 }
+

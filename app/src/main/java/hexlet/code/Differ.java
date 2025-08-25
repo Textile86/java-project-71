@@ -8,7 +8,14 @@ import java.util.TreeSet;
 public class Differ {
 
     public static String generate(String filePath1, String filePath2) throws IOException {
-        return generateDiff(Parser.parse(Path.of(filePath1)), Parser.parse(Path.of(filePath2)));
+        String format1 = Parser.getFormat(Path.of(filePath1));
+        String format2 = Parser.getFormat(Path.of(filePath2));
+        if (!format1.equals(format2)) {
+            throw new IllegalArgumentException("Files has different format");
+        }
+        Map<String, Object> data1 = Parser.parse(Path.of(filePath1));
+        Map<String, Object> data2 = Parser.parse(Path.of(filePath2));
+        return generateDiff(data1, data2);
     }
 
     public static String generateDiff(Map<String, Object> data1, Map<String, Object> data2) {
