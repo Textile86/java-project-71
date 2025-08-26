@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class Parser {
     public static Map<String, Object> parse(Path filepath) throws IOException {
-        ObjectMapper mapper = getMapper(getFormat(filepath));
+        ObjectMapper mapper = getMapper(getFileFormat(filepath));
         String content = Files.readString(filepath);
         return mapper.readValue(content, new TypeReference<Map<String, Object>>() {
         });
@@ -28,7 +28,7 @@ public class Parser {
         }
     }
 
-    public static String getFormat(Path filepath) {
+    public static String getFileFormat(Path filepath) {
         String filename = filepath.getFileName().toString();
         int lastDotIndex = filename.lastIndexOf('.');
         if (lastDotIndex == -1) {

@@ -34,13 +34,15 @@ public class App implements Callable<Integer> {
 
     @Option(
         names = {"-f", "--format"},
-        description = "output format [default: stylish]"
+        description = "output format [default: ${DEFAULT-VALUE}]",
+        defaultValue = "stylish"
     )
-    private String format;
+
+    private String format = "stylish";
 
     @Override
     public Integer call() throws IOException {
-        String diff = Differ.generate(filepath1, filepath2);
+        String diff = Differ.generate(filepath1, filepath2, format);
         System.out.println(diff);
         return 0;
     }
