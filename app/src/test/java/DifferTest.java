@@ -10,16 +10,16 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DifferTest {
-    public static String expectedResult;
-    public static String expectedEmptyResult;
-    public static String expectedAllTypesResult;
-    public static String expectedSameFilesResult;
-    public static String expectedYamlCompareResult;
-    public static String expectedNestedCompareResult;
-    public static String expectedNestedPlainCompareResult;
-    public static String expectedPlainFlatJsonResult;
-    public static String expectedJsonformFlatResult;
-    public static String expectedJsonformNestedResult;
+    private  static String expectedResult;
+    private  static String expectedEmptyResult;
+    private  static String expectedAllTypesResult;
+    private  static String expectedSameFilesResult;
+    private  static String expectedYamlCompareResult;
+    private  static String expectedNestedCompareResult;
+    private  static String expectedNestedPlainCompareResult;
+    private  static String expectedPlainFlatJsonResult;
+    private  static String expectedJsonformFlatResult;
+    private  static String expectedJsonformNestedResult;
 
 
     @BeforeAll
