@@ -19,7 +19,7 @@
 - Сравнение YAML-файлов
 
 ## Демонстрация работы:
-[![asciicast](https://asciinema.org/a/lX8TIffhHqNGXbJx9OT8vfJAm.svg)](https://asciinema.org/a/lX8TIffhHqNGXbJx9OT8vfJAm)
+[![asciicast](https://asciinema.org/a/ACRUX2LLOrnEMEIAHc7LYogDa.svg)](https://asciinema.org/a/ACRUX2LLOrnEMEIAHc7LYogDa)
 
 ## Установка:
 ```bash

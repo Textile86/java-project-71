@@ -18,6 +18,8 @@ public class DifferTest {
     public static String expectedNestedCompareResult;
     public static String expectedNestedPlainCompareResult;
     public static String expectedPlainFlatJsonResult;
+    public static String expectedJsonformFlatResult;
+    public static String expectedJsonformNestedResult;
 
 
     @BeforeAll
@@ -38,6 +40,10 @@ public class DifferTest {
         expectedNestedPlainCompareResult = Files.readString(expectedNestedPlainFilesPath).trim();
         Path expectedPlainFlatJsonFilesPath = Paths.get("expected_plain_flat_json.txt");
         expectedPlainFlatJsonResult = Files.readString(expectedPlainFlatJsonFilesPath).trim();
+        Path  expectedJsonformFlatFilesPath = Paths.get("expected_jsonform_flat.txt");
+        expectedJsonformFlatResult = Files.readString(expectedJsonformFlatFilesPath).trim();
+        Path  expectedJsonformNestedFilesPath = Paths.get("expected_jsonform_nested.txt");
+        expectedJsonformNestedResult = Files.readString(expectedJsonformFlatFilesPath).trim();
     }
 
     @Test
@@ -163,7 +169,42 @@ public class DifferTest {
         });
     }
 
+    @Test
+    public void testGenerateJsonformFlat() throws IOException {
+        String filePath1 = "file1.json";
+        String filePath2 = "file2.json";
+        String result = Differ.generate(filePath1, filePath2, "json").trim();
+        assertEquals(expectedJsonformFlatResult, result);
+    }
 
+    @Test
+    public void testGenerateJsonformNested() throws IOException {
+        String filePath1 = "file1.json";
+        String filePath2 = "file2.json";
+        String result = Differ.generate(filePath1, filePath2, "json").trim();
+        assertEquals(expectedJsonformNestedResult, result);
+    }
+
+    @Test
+    public void testJsonformDifferentFormats() throws Exception {
+        String filePath1 = "yaml_file1.yaml";
+        String filePath2 = "file2.json";
+        try {
+            Differ.generate(filePath1, filePath2, "json").trim();
+            assert false : "Must throw exception";
+        } catch (IllegalArgumentException e) {
+            assertEquals("Files has different format", e.getMessage());
+        }
+    }
+
+    @Test
+    public void testJsonformFileNotExist() {
+        String filePath1 = "file1.json";
+        String filePath2 = "fileNotExist.json";
+        assertThrows(IOException.class, () -> {
+            Differ.generate(filePath1, filePath2, "json");
+        });
+    }
 
 }
 
