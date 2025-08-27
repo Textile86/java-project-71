@@ -21,4 +21,8 @@ public class Differ {
         return Formatter.format(data1, data2, format);
     }
 
+    public static String generate(String filePath1, String filePath2) throws IOException {
+        return generate(filePath1, filePath2, "stylish");
+    }
+
 }
