@@ -17,6 +17,7 @@
 
 - Сравнение JSON-файлов
 - Сравнение YAML-файлов
+- Форматы вывода: stylish, plain, json
 
 ## Демонстрация работы:
 [![asciicast](https://asciinema.org/a/ACRUX2LLOrnEMEIAHc7LYogDa.svg)](https://asciinema.org/a/ACRUX2LLOrnEMEIAHc7LYogDa)
@@ -32,17 +33,25 @@ cd java-project-71/app
 
 ### Сравнение двух JSON-файлов
 ```bash
-./build/install/app/bin/app file1.json file2.json
+app file1.json file2.json
+```
+
+```bash
+app -f json file1.json file2.json
 ```
 
 ### Сравнение двух YAML-файлов
 ```bash
-./build/install/app/bin/app file1.yaml file2.yaml
+app file1.yaml file2.yaml
+```
+
+```bash
+app -f plain nested_yaml_file1.yaml nested_yaml_file2.yaml
 ```
 
 ### Справочная информация
 ```bash
-./build/install/app/bin/app -f
+app -f
 ```
 
 ## Развертывание программы
@@ -79,39 +88,35 @@ make update
 
 ### Структура проекта
 ```
-├── README.md
-└── app
-    ├── Makefile
-    ├── build.gradle.kts
-    ├── config
-    │   └── checkstyle
-    │       ├── checkstyle.xml
-    │       └── checkstyle.xml:Zone.Identifier
-    ├── gradle
-    ├── gradlew
-    ├── gradlew.bat
-    ├── settings.gradle.kts
-    └── src
-        ├── main
-        │   ├── java
-        │   │   └── hexlet
-        │   │       └── code
-        │   │           ├── App.java
-        │   │           ├── Differ.java
-        │   │           └── Parser.java
-        │   └── resources
-        └── test
-            ├── java
-            │   └── DifferTest.java
-            └── resources
-                ├── empty_file1.json
-                ├── empty_file2.json
-                ├── expected_all_types.txt
-                ├── expected_empty.txt
-                ├── expected_result.txt
-                ├── expected_same_files.txt
-                ├── file1.json
-                ├── file2.json
-                ├── file_all_types1.json
-                └── file_all_types2.json
+.
+├── build.gradle.kts              # Конфигурация Gradle
+├── gradlew                       # Gradle wrapper
+├── settings.gradle.kts           # Настройки проекта
+├── src
+│   ├── main
+│   │   └── java
+│   │       └── hexlet
+│   │           └── code
+│   │               ├── App.java              # Главный класс (picocli)
+│   │               ├── Differ.java           # Логика сравнения файлов
+│   │               ├── Formatter.java        # Фабрика форматеров
+│   │               ├── Parser.java           # Парсер JSON/YAML
+│   │               └── formatters
+│   │                   ├── JsonFormatter.java    # JSON форматтер
+│   │                   ├── PlainFormatter.java   # Plain форматтер  
+│   │                   └── StylishFormatter.java # Stylish форматтер
+│   └── test
+│       ├── java
+│       │   └── DifferTest.java           # Тесты
+│       └── resources
+│           ├── file1.json                # Тестовые файлы
+│           ├── file2.json
+│           ├── expected_*.txt           # Ожидаемые результаты
+│           └── ...
+├── build
+│   └── install
+│       └── app
+│           └── bin
+│               └── app                  # Исполняемый файл
+└── README.md                           # Документация
 ```
