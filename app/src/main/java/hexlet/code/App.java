@@ -14,12 +14,6 @@ import java.util.concurrent.Callable;
 )
 
 public final class App implements Callable<Integer> {
-
-    public static void main(String[] args) {
-        int exitCode = new CommandLine(new App()).execute(args);
-        System.exit(exitCode);
-    }
-
     @Parameters(
         paramLabel = "filepath1",
         description = "path to first file"
@@ -37,8 +31,12 @@ public final class App implements Callable<Integer> {
         description = "output format [default: ${DEFAULT-VALUE}]",
         defaultValue = "stylish"
     )
+    private String format;
 
-    private String format = "stylish";
+    public static void main(String[] args) {
+        int exitCode = new CommandLine(new App()).execute(args);
+        System.exit(exitCode);
+    }
 
     @Override
     public Integer call() throws IOException {

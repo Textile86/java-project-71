@@ -16,7 +16,7 @@ public class Formatter {
             case "json":
                 return JsonFormatter.format(data1, data2);
             default:
-                throw new IllegalArgumentException("Unknown format");
+                throw new RuntimeException("Unknown format: " + formatName);
         }
     }
 }

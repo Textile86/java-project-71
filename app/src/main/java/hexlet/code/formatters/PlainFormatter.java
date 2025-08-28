@@ -12,7 +12,6 @@ public class PlainFormatter {
         allSortedKeys.addAll(data1.keySet());
         allSortedKeys.addAll(data2.keySet());
 
-
         for (String key : allSortedKeys) {
             String value1 = checkFormat(data1.get(key));
             String value2 = checkFormat(data2.get(key));
