@@ -4,6 +4,13 @@ plugins {
     checkstyle
     id("org.sonarqube") version "6.2.0.5505"
     jacoco
+    id("io.freefair.lombok") version "8.14.2"
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21) // Укажите вашу версию Java
+    }
 }
 
 application {
@@ -21,6 +28,7 @@ sonar {
         property("sonar.projectKey", "Textile86_java-project-71")
         property("sonar.organization", "textile86")
         property("sonar.host.url", "https://sonarcloud.io")
+
     }
 }
 
@@ -41,6 +49,8 @@ dependencies {
     implementation("info.picocli:picocli:4.7.7")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.18.3")
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.14.2")
+    compileOnly("org.projectlombok:lombok:1.18.30")
+    annotationProcessor("org.projectlombok:lombok:1.18.30")
 }
 
 tasks.test {

@@ -10,16 +10,16 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DifferTest {
-    private  static String expectedResult;
-    private  static String expectedEmptyResult;
-    private  static String expectedAllTypesResult;
-    private  static String expectedSameFilesResult;
-    private  static String expectedYamlCompareResult;
-    private  static String expectedNestedCompareResult;
-    private  static String expectedNestedPlainCompareResult;
-    private  static String expectedPlainFlatJsonResult;
-    private  static String expectedJsonformFlatResult;
-    private  static String expectedJsonformNestedResult;
+    private static String expectedResult;
+    private static String expectedEmptyResult;
+    private static String expectedAllTypesResult;
+    private static String expectedSameFilesResult;
+    private static String expectedYamlCompareResult;
+    private static String expectedNestedCompareResult;
+    private static String expectedNestedPlainCompareResult;
+    private static String expectedPlainFlatJsonResult;
+    private static String expectedJsonformFlatResult;
+    private static String expectedJsonformNestedResult;
 
 
     @BeforeAll
@@ -43,7 +43,7 @@ public class DifferTest {
         Path  expectedJsonformFlatFilesPath = Paths.get("src/test/resources/expected_jsonform_flat.txt");
         expectedJsonformFlatResult = Files.readString(expectedJsonformFlatFilesPath).trim();
         Path  expectedJsonformNestedFilesPath = Paths.get("src/test/resources/expected_jsonform_nested.txt");
-        expectedJsonformNestedResult = Files.readString(expectedJsonformFlatFilesPath).trim();
+        expectedJsonformNestedResult = Files.readString(expectedJsonformNestedFilesPath).trim();
     }
 
     @Test
@@ -58,9 +58,8 @@ public class DifferTest {
     public void testFileNotExist() {
         String filePath1 = "src/test/resources/file1.json";
         String filePath2 = "src/test/resources/fileNotExist.json";
-        assertThrows(IOException.class, () -> {
-            Differ.generate(filePath1, filePath2, "stylish");
-        });
+        assertThrows(IOException.class, () -> Differ.generate(filePath1, filePath2, "stylish"));
+
     }
 
     @Test
@@ -96,16 +95,13 @@ public class DifferTest {
     }
 
     @Test
-    public void testDifferentFormats() throws Exception {
+    public void testDifferentFormats() {
         String filePath1 = "src/test/resources/yaml_file1.yaml";
         String filePath2 = "src/test/resources/file2.json";
-        try {
-            Differ.generate(filePath1, filePath2, "stylish").trim();
-            assert false : "Must throw exception";
-        } catch (RuntimeException e) {
-            assertEquals("Files has different format", e.getMessage());
+        Exception e = assertThrows(RuntimeException.class, () -> Differ.generate(filePath1, filePath2, "stylish"));
+        assertEquals("Files has different format", e.getMessage());
         }
-    }
+
 
     @Test
     public void testNestedJsonFiles() throws IOException {
@@ -143,30 +139,22 @@ public class DifferTest {
     public void testPlainFileNotExist() {
         String filePath1 = "src/test/resources/file1.json";
         String filePath2 = "src/test/resources/fileNotExist.json";
-        assertThrows(IOException.class, () -> {
-            Differ.generate(filePath1, filePath2, "plain");
-        });
+        assertThrows(IOException.class, () -> Differ.generate(filePath1, filePath2, "plain"));
     }
 
     @Test
-    public void testPlainDifferentFormats() throws Exception {
+    public void testPlainDifferentFormats() {
         String filePath1 = "src/test/resources/yaml_file1.yaml";
         String filePath2 = "src/test/resources/file2.json";
-        try {
-            Differ.generate(filePath1, filePath2, "plain").trim();
-            assert false : "Must throw exception";
-        } catch (RuntimeException e) {
-            assertEquals("Files has different format", e.getMessage());
-        }
+        Exception e = assertThrows(RuntimeException.class, () -> Differ.generate(filePath1, filePath2, "plain"));
+        assertEquals("Files has different format", e.getMessage());
     }
 
     @Test
     public void testPlainUnknownFormat() {
         String filePath1 = "src/test/resources/file1.json";
         String filePath2 = "src/test/resources/file2.json";
-        assertThrows(RuntimeException.class, () -> {
-            Differ.generate(filePath1, filePath2, "unknown");
-        });
+        assertThrows(RuntimeException.class, () -> Differ.generate(filePath1, filePath2, "unknown"));
     }
 
     @Test
@@ -179,32 +167,25 @@ public class DifferTest {
 
     @Test
     public void testGenerateJsonformNested() throws IOException {
-        String filePath1 = "src/test/resources/file1.json";
-        String filePath2 = "src/test/resources/file2.json";
+        String filePath1 = "src/test/resources/nested_json_file1.json";
+        String filePath2 = "src/test/resources/nested_json_file2.json";
         String result = Differ.generate(filePath1, filePath2, "json").trim();
         assertEquals(expectedJsonformNestedResult, result);
     }
 
     @Test
-    public void testJsonformDifferentFormats() throws Exception {
+    public void testJsonformDifferentFormats() {
         String filePath1 = "src/test/resources/yaml_file1.yaml";
         String filePath2 = "src/test/resources/file2.json";
-        try {
-            Differ.generate(filePath1, filePath2, "json").trim();
-            assert false : "Must throw exception";
-        } catch (RuntimeException e) {
-            assertEquals("Files has different format", e.getMessage());
-        }
+        Exception e = assertThrows(RuntimeException.class, () -> Differ.generate(filePath1, filePath2, "json"));
+        assertEquals("Files has different format", e.getMessage());
     }
 
     @Test
     public void testJsonformFileNotExist() {
         String filePath1 = "src/test/resources/file1.json";
         String filePath2 = "src/test/resources/fileNotExist.json";
-        assertThrows(IOException.class, () -> {
-            Differ.generate(filePath1, filePath2, "json");
-        });
+        assertThrows(IOException.class, () -> Differ.generate(filePath1, filePath2, "json"));
     }
 
 }
-

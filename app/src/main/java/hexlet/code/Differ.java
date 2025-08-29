@@ -1,8 +1,12 @@
 package hexlet.code;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Map;
 
 public class Differ {
@@ -10,17 +14,23 @@ public class Differ {
         if (format == null) {
             format = "stylish";
         }
-        String content1 = Files.readString(Path.of(filePath1));
-        String content2 = Files.readString(Path.of(filePath2));
-        String fileFormat1 = getFileFormat(Path.of(filePath1));
-        String fileFormat2 = getFileFormat(Path.of(filePath2));
+        Path path1 = Path.of(filePath1);
+        Path path2 = Path.of(filePath2);
+        String content1 = Files.readString(path1);
+        String content2 = Files.readString(path2);
+        String fileFormat1 = getFileFormat(path1);
+        String fileFormat2 = getFileFormat(path2);
         if (!fileFormat1.equals(fileFormat2)) {
             throw new RuntimeException("Files has different format");
         }
-        Map<String, Object> data1 = Parser.parse(content1, fileFormat1);
-        Map<String, Object> data2 = Parser.parse(content2, fileFormat2);
+        ObjectMapper mapper1 = getMapper(fileFormat1);
+        ObjectMapper mapper2 = getMapper(fileFormat2);
+        Map<String, Object> data1 = Parser.parse(content1, mapper1);
+        Map<String, Object> data2 = Parser.parse(content2, mapper2);
 
-        return Formatter.format(data1, data2, format);
+        List<Difference> differences = FindDifference.findDiff(data1, data2);
+
+        return Formatter.format(differences, format);
     }
 
     public static String generate(String filePath1, String filePath2) throws IOException {
@@ -34,6 +44,14 @@ public class Differ {
             throw new IllegalArgumentException("File without extension: " + filename);
         }
         return filename.substring(lastDotIndex + 1);
+    }
+
+    private static ObjectMapper getMapper(String fileFormat) {
+        return switch (fileFormat.toLowerCase()) {
+            case "json" -> new ObjectMapper();
+            case "yml", "yaml" -> new YAMLMapper();
+            default -> throw new RuntimeException("Wrong format: " + fileFormat);
+        };
     }
 
 }
