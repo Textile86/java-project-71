@@ -100,7 +100,7 @@ public class DifferTest {
         String filePath2 = "src/test/resources/file2.json";
         Exception e = assertThrows(RuntimeException.class, () -> Differ.generate(filePath1, filePath2, "stylish"));
         assertEquals("Files has different format", e.getMessage());
-        }
+    }
 
 
     @Test
