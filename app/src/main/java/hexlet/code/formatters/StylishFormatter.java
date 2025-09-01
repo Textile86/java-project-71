@@ -20,7 +20,7 @@ public class StylishFormatter {
                     result.append("  - ").append(key).append(": ").append(value1).append("\n");
                     result.append("  + ").append(key).append(": ").append(value2).append("\n");
                 }
-                default -> throw new IllegalArgumentException("Unknown difference type !");
+                default -> throw new IllegalArgumentException("Unknown difference type: '" + diff.getStatus() + "'");
             }
         }
         result.append("}");

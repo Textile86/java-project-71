@@ -1,7 +1,6 @@
 package hexlet.code.formatters;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import hexlet.code.Difference;
 
 import java.util.ArrayList;
@@ -14,8 +13,6 @@ public class JsonFormatter {
     public static String format(List<Difference> differences) {
         try {
             ObjectMapper mapper = new ObjectMapper();
-            mapper.enable(SerializationFeature.INDENT_OUTPUT);
-
             List<Map<String, Object>> result = new ArrayList<>();
 
             for (Difference diff : differences) {

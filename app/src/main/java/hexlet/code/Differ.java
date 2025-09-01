@@ -1,8 +1,5 @@
 package hexlet.code;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -23,10 +20,9 @@ public class Differ {
         if (!fileFormat1.equals(fileFormat2)) {
             throw new RuntimeException("Files has different format");
         }
-        ObjectMapper mapper1 = getMapper(fileFormat1);
-        ObjectMapper mapper2 = getMapper(fileFormat2);
-        Map<String, Object> data1 = Parser.parse(content1, mapper1);
-        Map<String, Object> data2 = Parser.parse(content2, mapper2);
+
+        Map<String, Object> data1 = Parser.parse(content1, fileFormat1);
+        Map<String, Object> data2 = Parser.parse(content2, fileFormat2);
 
         List<Difference> differences = FindDifference.findDiff(data1, data2);
 
@@ -46,12 +42,6 @@ public class Differ {
         return filename.substring(lastDotIndex + 1);
     }
 
-    private static ObjectMapper getMapper(String fileFormat) {
-        return switch (fileFormat.toLowerCase()) {
-            case "json" -> new ObjectMapper();
-            case "yml", "yaml" -> new YAMLMapper();
-            default -> throw new RuntimeException("Wrong format: " + fileFormat);
-        };
-    }
+
 
 }

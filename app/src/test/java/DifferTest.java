@@ -50,7 +50,7 @@ public class DifferTest {
     public void testGenerateFlatJson() throws IOException {
         String filePath1 = "src/test/resources/file1.json";
         String filePath2 = "src/test/resources/file2.json";
-        String result = Differ.generate(filePath1, filePath2, "stylish").trim();
+        String result = Differ.generate(filePath1, filePath2, "stylish");
         assertEquals(expectedResult, result);
     }
 
@@ -66,7 +66,7 @@ public class DifferTest {
     public void testFilesAreEmpty() throws IOException {
         String filePath1 = "src/test/resources/empty_file1.json";
         String filePath2 = "src/test/resources/empty_file2.json";
-        String result = Differ.generate(filePath1, filePath2, "stylish").trim();
+        String result = Differ.generate(filePath1, filePath2, "stylish");
         assertEquals(expectedEmptyResult, result);
     }
 
@@ -74,7 +74,7 @@ public class DifferTest {
     public void testSameFiles() throws IOException {
         String filePath1 = "src/test/resources/file1.json";
         String filePath2 = "src/test/resources/file1.json";
-        String result = Differ.generate(filePath1, filePath2, "stylish").trim();
+        String result = Differ.generate(filePath1, filePath2, "stylish");
         assertEquals(expectedSameFilesResult, result);
     }
 
@@ -82,7 +82,7 @@ public class DifferTest {
     public void testAllTypes() throws IOException {
         String filePath1 = "src/test/resources/file_all_types1.json";
         String filePath2 = "src/test/resources/file_all_types2.json";
-        String result = Differ.generate(filePath1, filePath2, "stylish").trim();
+        String result = Differ.generate(filePath1, filePath2, "stylish");
         assertEquals(expectedAllTypesResult, result);
     }
 
@@ -90,7 +90,7 @@ public class DifferTest {
     public void testYamlFiles() throws IOException {
         String filePath1 = "src/test/resources/yaml_file1.yaml";
         String filePath2 = "src/test/resources/yaml_file2.yaml";
-        String result = Differ.generate(filePath1, filePath2, "stylish").trim();
+        String result = Differ.generate(filePath1, filePath2, "stylish");
         assertEquals(expectedYamlCompareResult, result);
     }
 
@@ -107,7 +107,7 @@ public class DifferTest {
     public void testNestedJsonFiles() throws IOException {
         String filePath1 = "src/test/resources/nested_json_file1.json";
         String filePath2 = "src/test/resources/nested_json_file2.json";
-        String result = Differ.generate(filePath1, filePath2, "stylish").trim();
+        String result = Differ.generate(filePath1, filePath2, "stylish");
         assertEquals(expectedNestedCompareResult, result);
     }
 
@@ -115,7 +115,7 @@ public class DifferTest {
     public void testNestedYamlFiles() throws IOException {
         String filePath1 = "src/test/resources/nested_yaml_file1.yaml";
         String filePath2 = "src/test/resources/nested_yaml_file2.yaml";
-        String result = Differ.generate(filePath1, filePath2, "stylish").trim();
+        String result = Differ.generate(filePath1, filePath2, "stylish");
         assertEquals(expectedNestedCompareResult, result);
     }
 
@@ -123,7 +123,7 @@ public class DifferTest {
     public void testNestedPlainFiles() throws IOException {
         String filePath1 = "src/test/resources/nested_yaml_file1.yaml";
         String filePath2 = "src/test/resources/nested_yaml_file2.yaml";
-        String result = Differ.generate(filePath1, filePath2, "plain").trim();
+        String result = Differ.generate(filePath1, filePath2, "plain");
         assertEquals(expectedNestedPlainCompareResult, result);
     }
 
@@ -131,7 +131,7 @@ public class DifferTest {
     public void testGeneratePlainFlatJson() throws IOException {
         String filePath1 = "src/test/resources/file1.json";
         String filePath2 = "src/test/resources/file2.json";
-        String result = Differ.generate(filePath1, filePath2, "plain").trim();
+        String result = Differ.generate(filePath1, filePath2, "plain");
         assertEquals(expectedPlainFlatJsonResult, result);
     }
 
@@ -161,7 +161,7 @@ public class DifferTest {
     public void testGenerateJsonformFlat() throws IOException {
         String filePath1 = "src/test/resources/file1.json";
         String filePath2 = "src/test/resources/file2.json";
-        String result = Differ.generate(filePath1, filePath2, "json").trim();
+        String result = Differ.generate(filePath1, filePath2, "json");
         assertEquals(expectedJsonformFlatResult, result);
     }
 
@@ -169,7 +169,7 @@ public class DifferTest {
     public void testGenerateJsonformNested() throws IOException {
         String filePath1 = "src/test/resources/nested_json_file1.json";
         String filePath2 = "src/test/resources/nested_json_file2.json";
-        String result = Differ.generate(filePath1, filePath2, "json").trim();
+        String result = Differ.generate(filePath1, filePath2, "json");
         assertEquals(expectedJsonformNestedResult, result);
     }
 

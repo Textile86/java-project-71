@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeSet;
+import java.util.Objects;
 
 public class FindDifference {
     public static List<Difference> findDiff(Map<String, Object> data1, Map<String, Object> data2) {
@@ -19,9 +20,9 @@ public class FindDifference {
             Object value1 = data1.get(key);
             Object value2 = data2.get(key);
 
-            if (hasKey1 && hasKey2 && isEqual(value1, value2)) {
+            if (hasKey1 && hasKey2 && Objects.equals(value1, value2)) {
                 differences.add(new Difference(key, "unchanged", value1, value2));
-            } else if (hasKey1 && hasKey2 && !isEqual(value1, value2)) {
+            } else if (hasKey1 && hasKey2 && !Objects.equals(value1, value2)) {
                 differences.add(new Difference(key, "changed", value1, value2));
             } else if (hasKey1 && !hasKey2) {
                 differences.add(new Difference(key, "removed", value1, null));
@@ -31,15 +32,6 @@ public class FindDifference {
 
         }
         return differences;
-    }
-
-    public static boolean isEqual(Object value1, Object value2) {
-        if (value1 == null && value2 == null) {
-            return true;
-        } else if (value1 == null || value2 == null) {
-            return false;
-        }
-        return value1.equals(value2);
     }
 
 }
