@@ -6,7 +6,7 @@ import hexlet.code.formatters.StylishFormatter;
 import java.util.List;
 
 public class Formatter {
-    public static String format(List<Difference> differences, String formatName) {
+    public static String format(List<Difference> differences, String formatName) throws Exception {
         return switch (formatName) {
             case "stylish" -> StylishFormatter.format(differences);
             case "plain" -> PlainFormatter.format(differences);

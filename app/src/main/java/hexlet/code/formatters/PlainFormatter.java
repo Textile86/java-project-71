@@ -23,7 +23,7 @@ public class PlainFormatter {
                     result.append(value2).append("\n");
                 }
                 case "unchanged" -> result.append("");
-                default -> throw new IllegalArgumentException("Unknown difference type !");
+                default -> throw new IllegalArgumentException("Unknown difference type ! '" + diff.getStatus() + "'");
             }
         }
         return result.toString().trim();

@@ -3,8 +3,6 @@ import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
-
-import java.io.IOException;
 import java.util.concurrent.Callable;
 
 @Command(
@@ -39,9 +37,14 @@ public final class App implements Callable<Integer> {
     }
 
     @Override
-    public Integer call() throws IOException {
-        String diff = Differ.generate(filepath1, filepath2, format);
-        System.out.println(diff);
-        return 0;
+    public Integer call() {
+        try {
+            String diff = Differ.generate(filepath1, filepath2, format);
+            System.out.println(diff);
+            return 0;
+        } catch (Exception e) {
+            System.out.println("Failed to generate diff: " + e.getMessage());
+            return 1;
+        }
     }
 }
