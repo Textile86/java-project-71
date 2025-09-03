@@ -32,17 +32,9 @@ public class Differ {
         return generate(filePath1, filePath2, "stylish");
     }
 
-    public static String getDataFormat(String filepath) {
-        String filename = Path.of(filepath).getFileName().toString();
-        int lastDotIndex = filename.lastIndexOf('.');
-        if (lastDotIndex == -1) {
-            throw new IllegalArgumentException("File without extension: " + filename);
-        }
-        String extension = filename.substring(lastDotIndex + 1);
-        return switch (extension) {
-            case "json" -> "json";
-            case "yml", "yaml" -> "yaml";
-            default -> throw new RuntimeException("Wrong data format: '" + extension + "'");
-        };
+    public static String getDataFormat(String filePath) {
+        String fileName = Path.of(filePath).getFileName().toString();
+        int lastDotIndex = fileName.lastIndexOf('.');
+        return lastDotIndex > 0 ? fileName.substring(lastDotIndex + 1) : "";
     }
 }
